@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import logging
+import os
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
@@ -16,6 +17,7 @@ from utils.exceptions import (
     bad_request, unauthorized, not_found, conflict, AppException
 )
 
+SKIP_OTP = os.getenv("SKIP_OTP", "false").lower() == "true"
 
 logger = logging.getLogger(__name__)
 
@@ -83,7 +85,7 @@ def signup_user(
             password_hash=hash_password(password),
             phone=phone,
             role=role,
-            is_active=False,
+            is_active=SKIP_OTP,  # Auto-activate if skipping OTP on cloud
             otp_hash=hash_otp(otp),
             otp_expiry=otp_expiry,
         )
@@ -112,13 +114,19 @@ def signup_user(
                     )
                 )
 
-        send_otp_email(email, otp)
+        if not SKIP_OTP:
+            send_otp_email(email, otp)
         db.commit()
         db.refresh(user)
     except Exception as e:
         db.rollback()
         logger.critical(f"Failed to send signup OTP to {email}: {str(e)}")
         raise bad_request("Unable to send OTP email. Please check your email address and try again.")
+
+    if SKIP_OTP:
+        # Auto-activate: return token directly (same format as verify_otp_and_activate)
+        token = create_access_token({"id": user.id, "role": user.role, "email": user.email})
+        return {"token": token, "user": _sanitize_user(user, db), "role": user.role, "email": email, "message": "Account activated (OTP skipped)"}
 
     return {"email": email, "message": "OTP sent to your email. Please verify to activate your account."}
 

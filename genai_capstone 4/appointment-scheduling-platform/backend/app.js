@@ -19,6 +19,9 @@ const categoryRoutes = require("./routes/categoryRoutes");
 
 const app = express();
 
+// ─── Trust proxy (required for rate limiters behind Render/Heroku/etc.) ───
+app.set("trust proxy", 1);
+
 const localDevOriginPattern = /^http:\/\/(localhost|127\.0\.0\.1):\d+$/;
 const allowedOrigins = [
   process.env.FRONTEND_URL || "http://localhost:5173",

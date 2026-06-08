@@ -11,6 +11,11 @@ const sequelize = new Sequelize(
     port: process.env.SQL_PORT,
     dialect: "mysql",
     logging: false,
+    ...(process.env.SQL_SSL === "true" && {
+      dialectOptions: {
+        ssl: { minVersion: "TLSv1.2", rejectUnauthorized: true },
+      },
+    }),
   }
 );
 

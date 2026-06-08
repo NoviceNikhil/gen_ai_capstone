@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     SQL_PASSWORD: str = ""
     SQL_HOST: str = "localhost"
     SQL_PORT: int = 3306
+    SQL_SSL: bool = False
 
     # Email
     EMAIL_USER: str = ""

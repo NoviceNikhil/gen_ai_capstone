@@ -10,6 +10,9 @@ const pool = mysql2.createPool({
   database: process.env.SQL_DB_NAME,
   waitForConnections: true,
   connectionLimit: 5,
+  ...(process.env.SQL_SSL === "true" && {
+    ssl: { minVersion: "TLSv1.2", rejectUnauthorized: true },
+  }),
 });
 
 // ─── Helper: query → xlsx buffer ─────────────────────────────────────────────

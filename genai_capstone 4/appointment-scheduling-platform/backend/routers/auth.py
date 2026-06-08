@@ -78,12 +78,13 @@ async def upload_onboarding_file(file: UploadFile = File(...)):
 def verify_otp(body: OtpVerifyRequest, response: Response, db: Session = Depends(get_db)):
     data = auth_service.verify_otp_and_activate(db, body.email, body.otp)
     # Set httpOnly cookie — mirrors capstone cookie pattern
+    is_prod = os.getenv("NODE_ENV") == "production"
     response.set_cookie(
         key="token",
         value=data["token"],
         httponly=True,
-        samesite="lax",
-        secure=False,
+        samesite="none" if is_prod else "lax",
+        secure=is_prod,
         path="/",
     )
     return success_response(data, "OTP verified — account activated")
@@ -92,7 +93,8 @@ def verify_otp(body: OtpVerifyRequest, response: Response, db: Session = Depends
 @router.post("/verify-otp/admin")
 def verify_admin_otp(body: OtpVerifyRequest, response: Response, db: Session = Depends(get_db)):
     data = auth_service.verify_admin_otp(db, body.email, body.otp)
-    response.set_cookie(key="token", value=data["token"], httponly=True, samesite="lax", path="/")
+    is_prod = os.getenv("NODE_ENV") == "production"
+    response.set_cookie(key="token", value=data["token"], httponly=True, samesite="none" if is_prod else "lax", secure=is_prod, path="/")
     return success_response(data, "Admin OTP verified")
 
 
@@ -106,7 +108,8 @@ def login(request: Request, body: LoginRequest, response: Response, db: Session 
     try:
         data = auth_service.login_user(db, body.email, body.password)
         if data.get("token"):
-            response.set_cookie(key="token", value=data["token"], httponly=True, samesite="lax", path="/")
+            is_prod = os.getenv("NODE_ENV") == "production"
+            response.set_cookie(key="token", value=data["token"], httponly=True, samesite="none" if is_prod else "lax", secure=is_prod, path="/")
         return success_response(data, "Login successful")
     except Exception as e:
         import traceback
@@ -122,7 +125,8 @@ def google_auth(request: Request, body: GoogleAuthRequest, response: Response, d
     data = auth_service.google_oauth_login(db, body.credential, body.intent, body.role)
 
     if data.get("token"):
-        response.set_cookie(key="token", value=data["token"], httponly=True, samesite="lax", path="/")
+        is_prod = os.getenv("NODE_ENV") == "production"
+        response.set_cookie(key="token", value=data["token"], httponly=True, samesite="none" if is_prod else "lax", secure=is_prod, path="/")
         
     return success_response(data, "Google Authentication successful")
 
@@ -138,7 +142,8 @@ def google_complete_signup(
     data = auth_service.complete_google_signup(db, body.credential, body.role)
 
     if data.get("token"):
-        response.set_cookie(key="token", value=data["token"], httponly=True, samesite="lax", path="/")
+        is_prod = os.getenv("NODE_ENV") == "production"
+        response.set_cookie(key="token", value=data["token"], httponly=True, samesite="none" if is_prod else "lax", secure=is_prod, path="/")
 
     return success_response(data, "Google signup completed")
 
@@ -246,5 +251,6 @@ def restore_account(
 ):
     data = auth_service.restore_account(db, body.email, body.password)
     if data.get("token"):
-        response.set_cookie(key="token", value=data["token"], httponly=True, samesite="lax", path="/")
+        is_prod = os.getenv("NODE_ENV") == "production"
+        response.set_cookie(key="token", value=data["token"], httponly=True, samesite="none" if is_prod else "lax", secure=is_prod, path="/")
     return success_response(data, "Account restored")
