@@ -35,6 +35,9 @@ class Settings(BaseSettings):
     REPORT_SERVICE_URL: str = "http://localhost:4000"
     REPORT_SERVICE_SECRET: str = "internal_shared_secret_key"
 
+    # Schedully chatbot microservice (HF Spaces or local)
+    SCHEDULLY_SERVICE_URL: str = ""
+
     # Redis
     REDIS_URL: str = ""
     MONGO_URI: str = ""

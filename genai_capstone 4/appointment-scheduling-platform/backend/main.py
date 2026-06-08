@@ -40,7 +40,32 @@ from pathlib import Path as _Path
 _schedully_parent = str(_Path(__file__).resolve().parents[1])
 if _schedully_parent not in sys.path:
     sys.path.insert(0, _schedully_parent)
-from schedully.backend.router import router as schedully_router
+
+ENABLE_CHATBOT = os.getenv("ENABLE_CHATBOT", "true").lower() == "true"
+if ENABLE_CHATBOT:
+    from schedully.backend.router import router as schedully_router
+else:
+    # If chatbot is disabled locally but a remote service URL is configured, proxy to it
+    from config.settings import settings as _settings
+    if _settings.SCHEDULLY_SERVICE_URL:
+        import httpx as _httpx
+        from fastapi import APIRouter as _APIRouter, Request as _Req
+        from fastapi.responses import JSONResponse as _JSONResp
+
+        schedully_proxy_router = _APIRouter(prefix="/api/schedully", tags=["Schedully-Proxy"])
+
+        @schedully_proxy_router.api_route("/{path:path}", methods=["GET", "POST", "PUT", "DELETE"])
+        async def _proxy_schedully(path: str, request: _Req):
+            url = f"{_settings.SCHEDULLY_SERVICE_URL}/api/schedully/{path}"
+            headers = dict(request.headers)
+            headers.pop("host", None)
+            body = await request.body()
+            async with _httpx.AsyncClient(timeout=30.0) as client:
+                resp = await client.request(
+                    method=request.method, url=url, headers=headers,
+                    content=body, params=dict(request.query_params),
+                )
+            return _JSONResp(content=resp.json(), status_code=resp.status_code)
 # ── chatbot changes end ───────────────────────────────────────────────────────
 
 LOCAL_DEV_ORIGIN_RE = re.compile(r"^http://(localhost|127\.0\.0\.1):\d+$")
@@ -108,16 +133,17 @@ async def lifespan(app: FastAPI):
     task = asyncio.create_task(expire_reschedule_requests_loop())
     # ── chatbot changes start ─────────────────────────────────────────────────
     # Load KB in background so uvicorn can bind the port immediately
-    async def _load_kb_background():
-        await asyncio.sleep(1)  # Let uvicorn bind first
-        try:
-            from schedully.backend.kb_loader import load_kb
-            load_kb()
-            print("  Schedully KB loaded successfully")
-        except Exception as e:
-            print(f"  Warning: KB loading failed (non-critical): {e}")
+    if ENABLE_CHATBOT:
+        async def _load_kb_background():
+            await asyncio.sleep(1)  # Let uvicorn bind first
+            try:
+                from schedully.backend.kb_loader import load_kb
+                load_kb()
+                print("  Schedully KB loaded successfully")
+            except Exception as e:
+                print(f"  Warning: KB loading failed (non-critical): {e}")
 
-    asyncio.create_task(_load_kb_background())
+        asyncio.create_task(_load_kb_background())
     # ── chatbot changes end ───────────────────────────────────────────────────
     yield
     # Shutdown: clean up resources if needed
@@ -238,7 +264,10 @@ app.include_router(reports_router)
 app.include_router(disputes_router)
 app.include_router(ai_insights_router)
 # ── chatbot changes start ─────────────────────────────────────────────────────
-app.include_router(schedully_router)
+if ENABLE_CHATBOT:
+    app.include_router(schedully_router)
+elif _settings.SCHEDULLY_SERVICE_URL:
+    app.include_router(schedully_proxy_router)
 # ── chatbot changes end ───────────────────────────────────────────────────────
 
 

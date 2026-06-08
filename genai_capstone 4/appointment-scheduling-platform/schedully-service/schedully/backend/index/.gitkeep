@@ -1,0 +1,2 @@
+# faiss.index and chunks.json are written here at runtime.
+# Do not commit those files — they are generated data.
