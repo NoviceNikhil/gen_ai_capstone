@@ -1,5 +1,7 @@
 # Schedex (Sigslot) — Intelligent Appointment Scheduling Platform
 
+🌐 **Live Demo**: [https://gen-ai-capstone.onrender.com](https://gen-ai-capstone.onrender.com)
+
 A scalable, secure, and production-ready full-stack appointment scheduling platform that unifies service provider discovery, appointment lifecycle management, AI-powered document verification, a RAG chatbot, waitlist management, payment processing, and Excel report generation — designed for a four-tier actor model (Admin, Customer, Service Provider, Organization).
 
 ![Architecture Diagram](./images/architecture.png)
