@@ -1,0 +1,139 @@
+/* ─── Premium Portal transitions ───────────────────────────────────────────── */
+
+/* ==========================================
+   1. PROVIDER: Diamond/Square Ripple
+   ========================================== */
+.square-ripple-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.square-wave {
+  position: absolute;
+  border: 1.5px solid var(--color-accent, #3d5a47); /* Sage Green */
+  border-radius: 4px;
+  opacity: 0;
+  box-shadow: 0 0 12px rgba(61, 90, 71, 0.25);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 0;
+  height: 0;
+}
+
+.square-wave.active {
+  animation: squareOut 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes squareOut {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.7;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    box-shadow: 0 0 12px rgba(61, 90, 71, 0.4);
+  }
+  40% {
+    opacity: 0.5;
+  }
+  100% {
+    width: 120vmax;
+    height: 120vmax;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(225deg) scale(1.1);
+    box-shadow: 0 0 2px rgba(61, 90, 71, 0);
+  }
+}
+
+.square-wave:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.square-wave:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.square-wave:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+/* ==========================================
+   2. CUSTOMER: Diagonal Cross Sweep
+   ========================================== */
+.cross-ripple-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cross-wave {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 2px solid var(--color-primary, #166534);
+  border-right: 2px solid var(--color-primary, #166534);
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.cross-wave.active {
+  animation: crossOut 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes crossOut {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.8;
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.2);
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    width: 130vmax;
+    height: 130vmax;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(180deg) scale(1);
+  }
+}
+
+.cross-wave:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.cross-wave:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.cross-wave:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .square-wave, .cross-wave {
+    animation: none !important;
+    display: none !important;
+  }
+}

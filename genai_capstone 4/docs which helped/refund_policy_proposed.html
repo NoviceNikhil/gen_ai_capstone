@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: transparent; padding: 16px; font-size: 13px; color: var(--fg, #111); }
+  h2 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { font-size: 11px; color: var(--muted, #888); margin-bottom: 16px; }
+  .section { margin-bottom: 20px; }
+  .section-title { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted, #777); margin-bottom: 8px; padding-left: 2px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--surface, #f4f4f5); padding: 7px 10px; text-align: left; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted, #555); border-bottom: 2px solid var(--border, #e4e4e7); }
+  td { padding: 9px 10px; border-bottom: 1px solid var(--border, #eee); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  .pct { font-weight: 700; font-size: 14px; }
+  .green { color: #16a34a; }
+  .yellow { color: #ca8a04; }
+  .orange { color: #ea580c; }
+  .red { color: #dc2626; }
+  .blue { color: #2563eb; }
+  .tag { display: inline-block; padding: 1px 7px; border-radius: 99px; font-size: 10.5px; font-weight: 600; margin-left: 4px; }
+  .tag-c { background: #dbeafe; color: #1d4ed8; }
+  .tag-p { background: #ede9fe; color: #6d28d9; }
+  .tag-s { background: #fef3c7; color: #92400e; }
+  .note { font-size: 11px; color: var(--muted, #777); margin-top: 2px; }
+  .gap { background: #fff7ed; border-left: 3px solid #f97316; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin-top: 16px; }
+  .gap strong { color: #c2410c; }
+  .env { font-family: monospace; font-size: 10.5px; background: var(--surface, #f4f4f5); padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h2>Proposed Refund Policy — Confirm or Correct</h2>
+<div class="subtitle">Based on your answers + expert gap-fill. Review each row.</div>
+
+<div class="section">
+  <div class="section-title">A — Customer cancels confirmed appointment <span class="tag tag-c">Customer fault</span></div>
+  <table>
+    <tr>
+      <th style="width:30%">Timing of cancellation</th>
+      <th style="width:18%">Customer gets</th>
+      <th style="width:18%">Platform keeps</th>
+      <th style="width:34%">Reasoning</th>
+    </tr>
+    <tr>
+      <td>Before provider confirms<br><span class="note">status: payment_pending or pending</span></td>
+      <td><span class="pct green">100%</span></td>
+      <td><span class="pct">0%</span></td>
+      <td>Provider never committed. Full refund, no penalty.</td>
+    </tr>
+    <tr>
+      <td>More than 24h before appointment<br><span class="note">status: confirmed, enough notice</span></td>
+      <td><span class="pct green">100%</span></td>
+      <td><span class="pct">0%</span></td>
+      <td><strong>Gap-fill:</strong> You said 80% but cancelling days ahead with full notice shouldn't penalise the customer. Full refund here is fair and reduces disputes.</td>
+    </tr>
+    <tr>
+      <td>Between 2h and 24h before<br><span class="note">confirmed, short notice</span></td>
+      <td><span class="pct yellow">80%</span></td>
+      <td><span class="pct">20%</span></td>
+      <td>Your stated 80%. Provider had short notice, slot likely wasted. 20% kept by platform as cancellation fee.</td>
+    </tr>
+    <tr>
+      <td>Less than 2h before<br><span class="note">confirmed, last minute</span></td>
+      <td><span class="pct red">0%</span></td>
+      <td><span class="pct">100%</span></td>
+      <td><strong>Gap-fill:</strong> Provider cannot fill a slot with 2h notice. Zero refund is standard. Confirm?</td>
+    </tr>
+    <tr>
+      <td>No-show (never cancelled)<br><span class="note">appointment time passed</span></td>
+      <td><span class="pct red">0%</span></td>
+      <td><span class="pct">100%</span></td>
+      <td>Universal standard. No refund, no exceptions.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">B — Provider-initiated cancellation / reschedule <span class="tag tag-p">Provider fault</span></div>
+  <table>
+    <tr>
+      <th style="width:30%">Scenario</th>
+      <th style="width:18%">Customer gets</th>
+      <th style="width:18%">Platform keeps</th>
+      <th style="width:34%">Reasoning</th>
+    </tr>
+    <tr>
+      <td>Provider directly cancels confirmed appointment</td>
+      <td><span class="pct green">100%</span></td>
+      <td><span class="pct">0%</span></td>
+      <td>Your decision. Provider broke the commitment. Full refund.</td>
+    </tr>
+    <tr>
+      <td>Provider proposes reschedule → customer rejects</td>
+      <td><span class="pct green">100%</span></td>
+      <td><span class="pct">0%</span></td>
+      <td>Provider initiated disruption, customer chose not to accept. Full refund.</td>
+    </tr>
+    <tr>
+      <td>Provider proposes reschedule → customer accepts</td>
+      <td><span class="pct blue">No refund</span></td>
+      <td><span class="pct">—</span></td>
+      <td>Appointment continues at new time. Payment transfers to new slot.</td>
+    </tr>
+    <tr>
+      <td>Reschedule proposal expires (customer ignores 24h)</td>
+      <td><span class="pct yellow">90%</span></td>
+      <td><span class="pct">10%</span></td>
+      <td>Your decision: 90% refund. <strong>Gap: who gets the 10%?</strong> See below.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">C — System &amp; Admin <span class="tag tag-s">Platform</span></div>
+  <table>
+    <tr>
+      <th style="width:30%">Scenario</th>
+      <th style="width:18%">Customer gets</th>
+      <th style="width:18%">Platform keeps</th>
+      <th style="width:34%">Reasoning</th>
+    </tr>
+    <tr>
+      <td>Admin cancels appointment</td>
+      <td><span class="pct green">100%</span></td>
+      <td><span class="pct">0%</span></td>
+      <td>Your decision. Always full refund.</td>
+    </tr>
+    <tr>
+      <td>Payment captured, appointment creation fails (DB crash)</td>
+      <td><span class="pct green">100%</span></td>
+      <td><span class="pct">0%</span></td>
+      <td>Platform fault. Auto-refund, non-negotiable.</td>
+    </tr>
+    <tr>
+      <td>15-min slot hold expires (paid but didn't confirm)</td>
+      <td><span class="pct green">100%</span></td>
+      <td><span class="pct">0%</span></td>
+      <td>Platform timeout. Auto-refund, non-negotiable.</td>
+    </tr>
+    <tr>
+      <td>Customer reschedules themselves</td>
+      <td><span class="pct blue">No refund</span></td>
+      <td><span class="pct">—</span></td>
+      <td>Payment transfers to new slot. Reschedule fee (<span class="env">RESCHEDULE_FEE_INR</span>) deducted if set.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="gap">
+  <strong>One unanswered question before I write the prompt:</strong><br><br>
+  When a reschedule proposal expires and the customer gets 90% back — <strong>where does the 10% go?</strong><br><br>
+  Option A: Platform keeps it as an administrative fee.<br>
+  Option B: Provider gets it as compensation for holding 3 slots for 24h and getting nothing.<br>
+  Option C: Split — 5% platform, 5% provider.<br><br>
+  This only matters if you implement provider payouts. If there's no payout system (providers get paid outside the platform), then platform keeps 10% by default and it's a no-brainer.
+</div>
+
+</body>
+</html>

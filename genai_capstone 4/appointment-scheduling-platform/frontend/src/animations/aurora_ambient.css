@@ -1,0 +1,113 @@
+/* ─── Aurora Borealis Ambient Glows ────────────────────────────────────────── */
+/* A slow, premium background glow animation using overlapping gradient layers
+   that deform and move along complex paths. Hardware accelerated and fully responsive. */
+
+.aurora-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--color-surface, #1a1714);
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aurora-glow {
+  position: absolute;
+  filter: blur(100px);
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+/* Light mode adjustments for softer blending and premium contrast */
+html[data-theme="light"] .aurora-glow {
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+  filter: blur(120px);
+}
+
+/* Layer 1: Emerald/Primary Ambient Blob */
+.aurora-glow-1 {
+  top: -20%;
+  left: -10%;
+  width: 70vw;
+  height: 70vw;
+  border-radius: 43% 57% 70% 30% / 45% 45% 55% 55%;
+  background: radial-gradient(circle, var(--color-primary, #166534) 0%, transparent 80%);
+  animation: aurora-morph-1 28s infinite alternate ease-in-out;
+}
+
+/* Layer 2: Sage Green/Accent Ambient Blob */
+.aurora-glow-2 {
+  bottom: -20%;
+  right: -10%;
+  width: 75vw;
+  height: 75vw;
+  border-radius: 60% 40% 30% 70% / 55% 45% 55% 45%;
+  background: radial-gradient(circle, var(--color-accent, #2f7d4f) 0%, transparent 80%);
+  animation: aurora-morph-2 36s infinite alternate-reverse ease-in-out;
+}
+
+/* Layer 3: Green Highlight Blob */
+.aurora-glow-3 {
+  top: 30%;
+  right: 15%;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50% 50% 40% 60% / 40% 60% 50% 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-primary, #166534) 50%, var(--color-accent, #2f7d4f)) 0%, transparent 70%);
+  animation: aurora-morph-3 24s infinite alternate ease-in-out;
+}
+
+/* Easing Curves: Organic, smooth, continuous transitions using transform only (GPU friendly) */
+@keyframes aurora-morph-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(8%, 12%, 0) scale(1.12) rotate(120deg);
+  }
+  66% {
+    transform: translate3d(-10%, 6%, 0) scale(0.9) rotate(240deg);
+  }
+  100% {
+    transform: translate3d(2%, -4%, 0) scale(1.05) rotate(360deg);
+  }
+}
+
+@keyframes aurora-morph-2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-12%, -8%, 0) scale(1.18) rotate(-180deg);
+  }
+  100% {
+    transform: translate3d(6%, 10%, 0) scale(0.95) rotate(-360deg);
+  }
+}
+
+@keyframes aurora-morph-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  40% {
+    transform: translate3d(15%, -15%, 0) scale(0.85) rotate(90deg);
+  }
+  80% {
+    transform: translate3d(-5%, 12%, 0) scale(1.1) rotate(270deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-glow {
+    animation: none !important;
+    transform: none !important;
+  }
+}

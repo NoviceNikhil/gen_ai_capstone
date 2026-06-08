@@ -1,0 +1,8 @@
+node_modules/
+.venv/
+myenv/
+backend/myenv/
+dist/
+graphify-out/
+.env
+**/.env

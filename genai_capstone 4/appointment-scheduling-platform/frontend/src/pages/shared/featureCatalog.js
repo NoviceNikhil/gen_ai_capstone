@@ -1,0 +1,178 @@
+export const FEATURE_SCREEN_CATALOG = {
+  customer_waitlist: {
+    title: "Waitlist & Auto-Fill",
+    subtitle: "Track preferred slots and get auto-notified when a cancellation matches your request.",
+    metrics: [{ label: "Open Requests", value: "12" }, { label: "Auto-Fills", value: "7" }, { label: "Avg Match Time", value: "3.1h" }, { label: "Success Rate", value: "58%" }],
+    highlights: [
+      { title: "Flexible Preferences", description: "Set date ranges, provider preference, and acceptable time windows." },
+      { title: "Priority Scoring", description: "Requests are ranked by urgency and booking likelihood to improve conversion." },
+      { title: "Instant Claim", description: "One-click claim flow to confirm a released slot before it expires." },
+    ],
+    actions: [{ label: "Browse Providers", to: "/customer/providers" }, { label: "View Appointments", to: "/customer/appointments" }],
+  },
+  customer_rebook: {
+    title: "Rebook Center",
+    subtitle: "Repeat past appointments quickly with saved preferences and provider continuity.",
+    metrics: [{ label: "Repeat Customers", value: "46%" }, { label: "One-Click Rebooks", value: "93" }, { label: "Avg Booking Time", value: "42s" }, { label: "Provider Match", value: "89%" }],
+    highlights: [
+      { title: "Smart Rebook Suggestions", description: "Recommended slots based on your previous appointment cadence." },
+      { title: "Service Templates", description: "Reuse service combinations, notes, and preferred meeting mode." },
+      { title: "Continuity Controls", description: "Stay with the same provider or open to similar specialists." },
+    ],
+    actions: [{ label: "Open History", to: "/customer/appointments" }, { label: "Find Provider", to: "/customer/providers" }],
+  },
+  customer_payments: {
+    title: "Payments & Invoices",
+    subtitle: "Manage deposits, payment methods, and downloadable invoices in one place.",
+    metrics: [{ label: "Saved Methods", value: "3" }, { label: "Pending Deposits", value: "4" }, { label: "Invoices", value: "28" }, { label: "Refund Requests", value: "1" }],
+    highlights: [
+      { title: "Deposit Visibility", description: "See upfront deposit requirements before confirming the booking." },
+      { title: "Invoice History", description: "Download tax-ready invoice copies for all completed appointments." },
+      { title: "Refund Tracking", description: "Follow cancellation and refund status with policy context." },
+    ],
+    actions: [{ label: "Go to Appointments", to: "/customer/appointments" }, { label: "Book New Service", to: "/customer/providers" }],
+  },
+  customer_notifications: {
+    title: "Notification Center",
+    subtitle: "Control appointment reminders, schedule updates, and follow-up communications.",
+    metrics: [{ label: "Active Rules", value: "9" }, { label: "Reminder Delivery", value: "98%" }, { label: "No-Show Reduction", value: "21%" }, { label: "Unread Alerts", value: "5" }],
+    highlights: [
+      { title: "Channel Preferences", description: "Set email, SMS, and push by appointment type and urgency." },
+      { title: "Reminder Timing", description: "Customize reminder cadence for 24h, 3h, and 30m windows." },
+      { title: "Exception Alerts", description: "Receive instant notifications for provider delays and cancellations." },
+    ],
+    actions: [{ label: "Upcoming Appointments", to: "/customer/appointments" }, { label: "Dashboard", to: "/customer/dashboard" }],
+  },
+  customer_reviews: {
+    title: "Reviews & Feedback",
+    subtitle: "Rate completed appointments and contribute quality signals to the marketplace.",
+    metrics: [{ label: "Pending Reviews", value: "6" }, { label: "Submitted", value: "41" }, { label: "Avg Response Time", value: "2d" }, { label: "Resolved Feedback", value: "95%" }],
+    highlights: [
+      { title: "Post-Visit Prompts", description: "Feedback requests are triggered after completion confirmation." },
+      { title: "Structured Ratings", description: "Capture service quality, communication, and punctuality separately." },
+      { title: "Issue Escalation", description: "Flag serious concerns for admin review directly from feedback." },
+    ],
+    actions: [{ label: "View Completed", to: "/customer/appointments" }, { label: "Marketplace", to: "/customer/providers" }],
+  },
+  provider_services: {
+    title: "Service Package Manager",
+    subtitle: "Create single or bundled services with dynamic duration, price, and prerequisites.",
+    metrics: [{ label: "Active Services", value: "14" }, { label: "Bundles", value: "5" }, { label: "Avg Session Value", value: "$86" }, { label: "Top Conversion", value: "32%" }],
+    highlights: [
+      { title: "Flexible Catalog", description: "Manage service tiers, delivery mode, and included extras." },
+      { title: "Bundle Strategy", description: "Combine complementary services to improve booking value." },
+      { title: "Eligibility Rules", description: "Set preconditions and intake requirements before booking." },
+    ],
+    actions: [{ label: "Provider Profile", to: "/provider/profile" }, { label: "Booking Queue", to: "/provider/appointments" }],
+  },
+  provider_waitlist: {
+    title: "Waitlist Operations",
+    subtitle: "Backfill canceled slots using waitlist priority and claim windows.",
+    metrics: [{ label: "Pending Matches", value: "17" }, { label: "Recovered Slots", value: "31" }, { label: "Claim Window", value: "15m" }, { label: "Fill Rate", value: "73%" }],
+    highlights: [
+      { title: "Priority Queue", description: "Automatically rank customers by fit, urgency, and history." },
+      { title: "Release Automation", description: "Push instant slot release notifications to eligible customers." },
+      { title: "Fallback Rules", description: "Set escalation logic when first-choice customers decline." },
+    ],
+    actions: [{ label: "Schedule", to: "/provider/availability" }, { label: "Appointments", to: "/provider/appointments" }],
+  },
+  provider_calendar_sync: {
+    title: "Calendar Sync",
+    subtitle: "Connect external calendars to prevent conflicts and keep availability accurate.",
+    metrics: [{ label: "Linked Calendars", value: "2" }, { label: "Sync Health", value: "99.7%" }, { label: "Conflict Prevention", value: "96%" }, { label: "Last Sync", value: "2m ago" }],
+    highlights: [
+      { title: "Two-Way Sync", description: "Read and write appointment blocks across connected calendars." },
+      { title: "Conflict Guard", description: "Block overlaps and automatically disable conflicting slots." },
+      { title: "Latency Monitoring", description: "Track delayed sync events and retry failures." },
+    ],
+    actions: [{ label: "Manage Availability", to: "/provider/availability" }, { label: "Dashboard", to: "/provider/dashboard" }],
+  },
+  provider_policies: {
+    title: "Reschedule & Cancellation Policies",
+    subtitle: "Define cutoff windows, fees, and exception handling rules by service type.",
+    metrics: [{ label: "Active Policies", value: "8" }, { label: "Grace Exceptions", value: "11" }, { label: "Fee Recovery", value: "$1.2K" }, { label: "Policy Acceptance", value: "94%" }],
+    highlights: [
+      { title: "Time-Based Cutoffs", description: "Set flexible cancellation windows for each service category." },
+      { title: "Fee Matrix", description: "Apply no-show and late-cancel fees with transparent customer messaging." },
+      { title: "Override Workflow", description: "Approve case-by-case waivers with proper audit records." },
+    ],
+    actions: [{ label: "Booking Queue", to: "/provider/appointments" }, { label: "Profile Settings", to: "/provider/profile" }],
+  },
+  provider_team: {
+    title: "Team & Staff Management",
+    subtitle: "Coordinate shifts, assignment rules, and provider-level capacity.",
+    metrics: [{ label: "Staff Members", value: "9" }, { label: "Open Shifts", value: "4" }, { label: "Utilization", value: "82%" }, { label: "Coverage Gaps", value: "2" }],
+    highlights: [
+      { title: "Shift Assignment", description: "Assign appointment windows by skill tags and certifications." },
+      { title: "Capacity Controls", description: "Set maximum daily load to protect quality of service." },
+      { title: "Performance Snapshot", description: "Track completion and punctuality at staff level." },
+    ],
+    actions: [{ label: "Provider Dashboard", to: "/provider/dashboard" }, { label: "Schedule", to: "/provider/availability" }],
+  },
+  provider_insights: {
+    title: "Business Insights",
+    subtitle: "Analyze demand, cancellations, and service profitability to optimize operations.",
+    metrics: [{ label: "Monthly Revenue", value: "$18.4K" }, { label: "Peak Slot", value: "6:00 PM" }, { label: "Cancellation Rate", value: "9.8%" }, { label: "Retention", value: "63%" }],
+    highlights: [
+      { title: "Demand Curves", description: "Identify high-intent windows and underutilized capacity." },
+      { title: "Cancellation Analysis", description: "Break down reasons and policy impact over time." },
+      { title: "Service Margins", description: "Compare profitability by service type and bundle." },
+    ],
+    actions: [{ label: "Booking Queue", to: "/provider/appointments" }, { label: "Export Reports", to: "/provider/dashboard" }],
+  },
+  admin_operations: {
+    title: "Operations Console",
+    subtitle: "Monitor core platform SLAs, incidents, and fulfillment bottlenecks.",
+    metrics: [{ label: "Open Incidents", value: "3" }, { label: "Avg SLA", value: "1h 18m" }, { label: "Pending Approvals", value: "14" }, { label: "Escalations", value: "5" }],
+    highlights: [
+      { title: "SLA Timeline", description: "Track case aging and breach risk in a single queue." },
+      { title: "Live Operations Feed", description: "View booking errors, payment issues, and provider outages." },
+      { title: "Ownership Routing", description: "Assign tasks to ops managers with audit visibility." },
+    ],
+    actions: [{ label: "Admin Dashboard", to: "/admin/dashboard" }, { label: "System Logs", to: "/admin/appointments" }],
+  },
+  admin_disputes: {
+    title: "Disputes & Refunds",
+    subtitle: "Review refund requests, service disputes, and final resolution outcomes.",
+    metrics: [{ label: "Open Disputes", value: "7" }, { label: "Refund Pipeline", value: "$2.1K" }, { label: "Resolution SLA", value: "26h" }, { label: "Closed This Week", value: "19" }],
+    highlights: [
+      { title: "Case Workflow", description: "Central timeline for evidence, provider response, and decision." },
+      { title: "Refund Controls", description: "Approve partial or full refunds with policy checks." },
+      { title: "Outcome Analytics", description: "Track dispute root causes to reduce future incidents." },
+    ],
+    actions: [{ label: "Admin Appointments", to: "/admin/appointments" }, { label: "User Control", to: "/admin/users" }],
+  },
+  admin_compliance: {
+    title: "Compliance & Audit",
+    subtitle: "Maintain consent records, security checks, and change history across roles.",
+    metrics: [{ label: "Audit Events", value: "2,143" }, { label: "Policy Violations", value: "2" }, { label: "Consent Coverage", value: "99%" }, { label: "Pending Reviews", value: "6" }],
+    highlights: [
+      { title: "Consent Registry", description: "Store proof of customer and provider policy acceptance." },
+      { title: "Access Log Review", description: "Filter sensitive action trails by actor and timestamp." },
+      { title: "Risk Flagging", description: "Highlight unusual account behavior for investigation." },
+    ],
+    actions: [{ label: "Provider Verification", to: "/admin/providers" }, { label: "Platform Dashboard", to: "/admin/dashboard" }],
+  },
+  admin_growth: {
+    title: "Growth Funnel Analytics",
+    subtitle: "Measure conversion from discovery through completed appointments.",
+    metrics: [{ label: "Visitor to Signup", value: "22%" }, { label: "Signup to Booking", value: "48%" }, { label: "Booking Completion", value: "84%" }, { label: "Rebook Rate", value: "44%" }],
+    highlights: [
+      { title: "Funnel Segments", description: "Analyze conversion by customer cohort and entry channel." },
+      { title: "Drop-Off Signals", description: "Track where users leave during booking and payment steps." },
+      { title: "Lifecycle Cohorts", description: "Understand retention impact of reminders and follow-ups." },
+    ],
+    actions: [{ label: "User Control", to: "/admin/users" }, { label: "Platform Dashboard", to: "/admin/dashboard" }],
+  },
+  admin_automation: {
+    title: "Automation Rules",
+    subtitle: "Configure no-show prevention, reminder cadences, and escalation automation.",
+    metrics: [{ label: "Active Rules", value: "23" }, { label: "Rule Success", value: "91%" }, { label: "Manual Saves", value: "74h/mo" }, { label: "Failed Runs", value: "1" }],
+    highlights: [
+      { title: "Policy Triggers", description: "Run actions based on booking state, timing, and risk score." },
+      { title: "Escalation Logic", description: "Auto-route unresolved issues to the correct ownership queue." },
+      { title: "Execution Logs", description: "Review automation outcomes and rollback failed rule versions." },
+    ],
+    actions: [{ label: "Operations Console", to: "/admin/operations" }, { label: "Compliance", to: "/admin/compliance" }],
+  },
+};

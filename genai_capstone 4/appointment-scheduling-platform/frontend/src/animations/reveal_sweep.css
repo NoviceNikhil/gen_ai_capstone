@@ -1,0 +1,111 @@
+/* ─── Cinematic Reveal & Border Sweep ───────────────────────────────────────── */
+/* A premium micro-interaction that sweeps a luminous light beam diagonally across
+   borders and container boundaries, coupled with a clip-path slide mask entrance. */
+
+.sweep-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--color-surface-1, #1c271f);
+  border: 1px solid var(--color-border, #243226);
+  transition: border-color 0.3s ease;
+}
+
+/* Sweep Highlight Line Overlay */
+.sweep-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 30%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    color-mix(in srgb, var(--color-primary, #166534) 60%, white 40%) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Hover-triggered sweep interaction */
+.sweep-card:hover::after {
+  animation: sweep-beam 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Entrance Sweep (triggered automatically on mount/entrance class) */
+.sweep-card.animate-entrance::after {
+  animation: sweep-beam 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Clip-path reveal mask for card contents */
+.sweep-reveal-content {
+  opacity: 0;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  will-change: transform, opacity, clip-path;
+}
+
+.sweep-card.animate-entrance .sweep-reveal-content,
+.sweep-card:hover .sweep-reveal-content {
+  animation: reveal-clip 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered entrance options for multiple child elements */
+.sweep-stagger-1 {
+  animation-delay: 0.15s !important;
+}
+
+.sweep-stagger-2 {
+  animation-delay: 0.3s !important;
+}
+
+.sweep-stagger-3 {
+  animation-delay: 0.45s !important;
+}
+
+/* Keyframes for the linear beam sweep */
+@keyframes sweep-beam {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+
+/* Keyframes for clip-path mask sweep */
+@keyframes reveal-clip {
+  0% {
+    opacity: 0;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sweep-card::after {
+    display: none !important;
+  }
+  .sweep-reveal-content {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

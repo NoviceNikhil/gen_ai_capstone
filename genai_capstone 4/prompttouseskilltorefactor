@@ -1,0 +1,105 @@
+/mir-backend-python-fastapi /mir-frontend-react
+
+I have an existing appointment scheduling platform codebase at:
+/Users/as-mac-1285/Desktop/genaicapstone/appointment_scheduling_platform
+
+IMPORTANT FRAMING:
+- Treat the existing code as a first draft, not ground truth
+- Your job is iterative refactoring, not greenfield generation
+- Do NOT generate any code until Gate 5 is approved
+- Do NOT skip any gate
+- At each gate, base everything on what you actually read in the codebase
+
+═══════════════════════════════════════
+GATE 0 — INTENT & TRIAGE
+═══════════════════════════════════════
+Read the entire codebase. Then:
+1. Restate what this platform actually does based on the code
+2. Identify all major flows (booking, cancellation, notifications, 
+   marketplace, customer view, provider view, payments if any)
+3. Classify risk surface:
+   - Which flows touch money, slots, or user data?
+   - Which flows have concurrency risk (double booking, race conditions)?
+   - Which flows cross the frontend/backend boundary inconsistently?
+
+═══════════════════════════════════════
+GATE 1 — CONSTRAINT INTERROGATION
+═══════════════════════════════════════
+Based on what you read, ask me 2-4 sharp questions about:
+- Business rules the code assumes but never enforces
+- Invariants that can be violated under real production conditions
+- Inconsistencies in how the same concept is handled across modules
+- Missing logic that the UI implies but the backend doesn't implement
+
+Rules for your questions:
+- Every question MUST reference a specific file, function, or flow
+- Include a [DEFAULT] answer with rationale for each question
+- Do NOT ask generic questions (no "do you need auth?" if auth already exists)
+- Wait for my answers before proceeding to Gate 2
+
+═══════════════════════════════════════
+GATE 2 — ASSUMPTION LEDGER
+═══════════════════════════════════════
+After I answer Gate 1:
+- Write a numbered Assumption Ledger of everything we will fix
+- Group by: BUSINESS LOGIC | BACKEND | FRONTEND | CONSISTENCY
+- Each item: what is wrong → what it should be → which files are affected
+- I must explicitly confirm this ledger before you proceed
+- If I correct any item, revise the ledger and re-present it
+
+═══════════════════════════════════════
+GATE 3 — INVARIANTS & FAILURE MODES
+═══════════════════════════════════════
+For each confirmed ledger item:
+- State the invariant that must hold after the fix
+- State what happens if it is violated (business impact, not just technical)
+- State the failure modes we are protecting against
+- Define the state machine for any flow that changes
+
+═══════════════════════════════════════
+GATE 4 — RISK REGISTER
+═══════════════════════════════════════
+Produce a table:
+Risk | Severity | Likelihood | Affected Flow | Mitigation
+
+Focus on:
+- Regressions from our fixes breaking currently working flows
+- Data integrity risks during the refactor
+- Frontend/backend contract changes that break the UI
+- Any fix that requires a DB migration on live data
+
+═══════════════════════════════════════
+GATE 5 — REFACTOR DESIGN REVIEW
+═══════════════════════════════════════
+For each ledger item, present:
+- Exact files that will change
+- What changes (no code yet — describe the change)
+- Transaction boundaries if DB is touched
+- Whether API contracts change (and how frontend adapts)
+- Order of changes (what must be fixed before what)
+
+I must approve this before any code is written.
+Present as: [ITEM N] → files → change description → dependency order
+
+═══════════════════════════════════════
+GATE 6 — IMPLEMENTATION
+═══════════════════════════════════════
+After Gate 5 approval:
+- Fix one ledger item at a time
+- Show the complete updated file, not just a diff
+- After each fix, state: "Item N complete. Ready for Item N+1 — confirm?"
+- Wait for my confirmation before moving to the next item
+- Do not refactor code outside the scope of each item
+
+═══════════════════════════════════════
+GATE 7 — PRODUCTION READINESS REVIEW
+═══════════════════════════════════════
+After all items are fixed, run all three reviewers on the changed files:
+- reliability-reviewer: did any fix introduce concurrency/idempotency issues?
+- security-reviewer: did any fix introduce IDOR, mass assignment, or data leaks?
+- migration-reviewer: if schema changed, is it safe for a populated table?
+
+Report remaining findings as:
+[CRITICAL/HIGH/MEDIUM/LOW] | file:line | issue | fix recommendation
+
+Flag any CRITICAL or HIGH finding for immediate fix before we close.

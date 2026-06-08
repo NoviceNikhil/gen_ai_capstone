@@ -1,0 +1,213 @@
+====================================================================
+KIRO CODEBASE KNOWLEDGE TRANSFER — Appointly / Schedex
+Session date: June 3, 2026
+====================================================================
+
+PROJECT LOCATION
+----------------
+/Users/as-mac-1285/Downloads/genai_capstone 2/appointment-scheduling-platform/
+
+STACK
+-----
+- Frontend: React + Vite, TailwindCSS, Recharts, Redux Toolkit, Base UI components
+- Backend: FastAPI (Python), SQLAlchemy ORM, MySQL, Redis (rate limiting/cache)
+- Auth: JWT (access_token in response body, sent as Bearer), Google OAuth for calendar
+- Payments: Razorpay (test keys)
+- DB: MySQL on localhost:3306, DB name: appointment_scheduling
+
+DB CREDENTIALS (from .env)
+---------------------------
+SQL_DB_USER=root
+SQL_PASSWORD=Password@1234321
+SQL_HOST=localhost, PORT=3306, DB=appointment_scheduling
+
+DEMO PASSWORDS
+--------------
+Providers:  Provider123
+Customers:  Customer123
+Admin:      Admin123
+Admin email: nikhilchathapuram@gmail.com
+
+KEY NAMED DEMO ACCOUNTS (all @app-demo.com)
+--------------------------------------------
+PROVIDERS (13 named):
+  aisha.mehta.provider     — Healthcare / General Physician
+  rohan.iyer.provider      — Healthcare / Physiotherapist
+  kavya.nair.provider      — Beauty & Wellness / Hair Stylist
+  arjun.rao.provider       — Beauty & Wellness / Yoga Coach
+  meera.kulkarni.provider  — Home Services / Appliance Repair
+  kabir.singh.provider     — Healthcare / Dermatologist
+  riya.patel.provider      — Beauty & Wellness / Makeup Artist
+  siddharth.jain.provider  — Home Services / Electrician
+  sameer.khan.provider     — Home Services / Deep Cleaning
+  nisha.shah.provider      — Business Consulting / Finance Advisor
+  vikram.menon.provider    — Business Consulting / Legal
+  priya.sharma.provider    — Education / Math Tutor
+  ananya.sen.provider      — Education / English Coach
+
+CUSTOMERS (8 named):
+  neha.verma.customer      — index 0
+  aditya.bose.customer     — index 1
+  sara.dsouza.customer     — index 2
+  rahul.kapoor.customer    — index 3
+  sneha.gupta.customer     — index 4
+  amit.singh.customer      — index 5
+  pooja.desai.customer     — index 6
+  vikram.sethi.customer    — index 7
+
+Also 1000 generated customers: customer_0001@app-demo.com ... customer_1000@app-demo.com
+Also 1000 generated providers: provider_0001@app-demo.com ... provider_1000@app-demo.com
+
+SEEDING
+-------
+Script: backend/seeding/seed.py
+Run:    python seed.py --reset-demo   (from backend/seeding/ folder)
+
+Key seeding functions:
+- seed_appointments()               — 50 named demo appointments A1-A50
+- seed_cross_appointments_for_reviews() — 22 completed appts between named customers
+                                         and named providers, INTENTIONALLY unreviewed
+                                         (so demo can show review submission flow)
+- seed_recent_appointments_for_named_providers() — heavy 30-day seed, 3-7 appts/day
+                                                    per named provider
+- seed_provider_reviews()           — auto-seeds reviews for all EXCEPT [DEMO:CX_*] appts
+- seed_service_selection()          — uses real ServiceOffering titles from DB
+- run_heavy_seeding()               — 1000 customers × 1-5 random appointments
+
+IMPORTANT SEEDING RULE:
+  Appointments marked [DEMO:CX_*] are cross-appointments for the review demo flow.
+  seed_provider_reviews() EXCLUDES these so they stay pending for customer to submit.
+  Do NOT change this behaviour.
+
+ServiceOffering per named provider (3 offerings each):
+  1. "Standard Session" — full fee, 30min
+  2. "Intro Call"       — 50% fee, 15min
+  3. "Extended Session" — 160% fee, 60min
+These titles are used by AppointmentServiceSelection for the pie chart in Insights.
+
+BACKEND STRUCTURE
+-----------------
+backend/
+  main.py              — FastAPI app, router registration
+  config/
+    database.py        — SQLAlchemy engine, SessionLocal, Base
+    settings.py        — env vars via pydantic Settings
+  models/              — all SQLAlchemy ORM models
+    user.py, service_provider.py, appointment.py, availability.py
+    provider_review.py, appointment_extras.py (AppointmentServiceSelection)
+    payment_records.py, service_offering.py, etc.
+  routers/
+    auth.py, provider.py, customer.py, admin.py, availability.py
+  services/
+    appointment_service.py   — get_customer_reviews() now returns category_name + specialization
+    provider_service.py      — _map_appointment() now includes service_selections[]
+    availability_service.py  — add_availability() with overlap check
+  schemas/
+    availability.py  — AvailabilityCreate (day_of_week OR specific_date, not both)
+  seeding/
+    seed.py          — THE seeding file
+
+CRITICAL BUG FIXED THIS SESSION:
+  availability_slots.day_of_week was NOT NULL in DB but model had nullable=True.
+  Fixed with: ALTER TABLE availability_slots MODIFY COLUMN day_of_week INT NULL;
+  This was causing 500 on specific_date slot creation. NOW WORKING.
+
+KEY API ENDPOINTS
+-----------------
+POST /auth/login                          → {token, user, role} (token key not access_token)
+GET  /api/provider/appointments           → max limit=50 (NOT 100 — backend enforces le=50)
+POST /api/availability                    → create slot (recurring or specific date)
+GET  /api/availability                    → get provider's slots
+GET  /api/provider/reviews                → provider sees customer reviews
+GET  /api/customer/reviews                → {pending:[], submitted:[]} with category_name field
+
+FRONTEND STRUCTURE
+------------------
+frontend/src/
+  pages/
+    provider/
+      Availability.jsx    — schedule management, heatmap, slot creation
+                            Uses DualRangeSlider for time range
+                            day_of_week uses Select with renderValue for name display
+                            slot_duration is now a free-form number input (min 5)
+      Insights.jsx        — analytics page, time range filter (7/15/30/60/90 days)
+                            status filter chips, pie chart = service type preference
+                            limit=50 for pagination (NOT 100)
+      ReviewsRatings.jsx  — provider reviews, search + sort + rating range filter
+      CalendarSync.jsx    — Google Calendar only (Other Providers + Info card REMOVED)
+    customer/
+      Reviews.jsx         — pending + submitted, filters: search/sort/category/rating range
+  components/ui/
+    DualRangeSlider.jsx   — fixed stale-closure bug, uses draggingRef + startRef + endRef
+    select.jsx            — Base UI @base-ui/react/select (NOT radix/shadcn)
+                            IMPORTANT: SelectValue needs renderValue={() => displayString}
+                            to show label in trigger — Base UI doesn't auto-display item children
+  store/
+    providerSlice.js      — Redux, addAvailability thunk → POST /api/availability
+  services/
+    apiService.js         — all API calls, getProviderAppointmentsAPI accepts {from_date, to_date, page, limit}
+
+UI COMPONENT NOTES
+------------------
+- Design system uses glass-card, text-text-muted, text-text-faint, text-accent CSS classes
+- Color palette: #C4441A (accent/red), #3D5A47 (green), #C4941A (gold), #4F46E5, #0EA5E9, #F97316
+- Charts: Recharts (LineChart, BarChart, PieChart) — all in Insights.jsx
+- Select component is Base UI, NOT shadcn/radix. renderValue prop required for trigger display.
+- DAY_NAMES = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+  Index 0=Monday (Python/backend convention), NOT Sunday like JS Date.getDay()
+- Calendar in Availability.jsx converts: pythonDay = (date.getDay() + 6) % 7
+
+GIT STATE
+---------
+Checkpoint commit: bc48241
+Message: "checkpoint: before prompt-5 changes (schedule, calendar sync, reviews filters)"
+To revert prompt-5 changes if needed: git revert HEAD
+
+KNOWN REMAINING ISSUES (as of end of session)
+----------------------------------------------
+1. Slot creation NOW WORKS after DB fix (day_of_week NULL fix)
+2. Day of week shows correct name via renderValue in Select
+3. Slot duration is free-form number input
+4. CalendarSync "Other Providers" + info card removed
+5. Provider ReviewsRatings has search + sort + rating filters
+6. Customer Reviews has search + sort + category + rating filters
+7. Insights page has 7/15/30/60/90 day range filter + status filter
+
+ORGANISATIONS (5, each with 2 named providers assigned):
+  Manipal Hospitals         — Aisha + Rohan
+  Urban Wellness Spa        — Kavya + Arjun
+  TechRepair & Home Svc     — Meera + Sameer
+  Elite Business Advisory   — Nisha + Vikram
+  Learning Academy India    — Priya + Ananya
+
+CATEGORIES (5):
+  Healthcare, Beauty & Wellness, Home Services, Business Consulting, Education
+
+APPOINTMENT STATUS FSM:
+  pending → confirmed → completed (terminal)
+  pending/confirmed → cancelled (terminal)
+
+REVIEW FLOW:
+  - Only completed appointments can be reviewed (one review per appointment)
+  - Customer submits via POST /api/customer/appointments/{id}/review
+  - Shows in provider's ReviewsRatings page
+  - Cross-appointments ([DEMO:CX_*]) intentionally left unreviewed for demo
+
+DEMO REVIEW FLOW ACCOUNTS (pending reviews ready to submit):
+  neha.verma.customer  → Dr. Aisha (2 pending), Dr. Rohan (1), Dr. Kabir (1)
+  sneha.gupta.customer → Dr. Aisha (1), Kavya Nair (1)
+  aditya.bose.customer → Kavya Nair, Arjun Rao, Priya Sharma
+  sara.dsouza.customer → Riya Patel, Meera Kulkarni, Ananya Sen
+  rahul.kapoor.customer → Vikram Menon (2), Nisha Shah
+  amit.singh.customer  → Dr. Rohan, Sameer Khan
+  pooja.desai.customer → Arjun Rao, Priya Sharma
+  vikram.sethi.customer → Nisha Shah, Dr. Kabir
+
+PERFORMANCE NOTES:
+  - Heavy seed creates ~1300-1700 appointments per named provider over 30 days
+  - This ensures all time-range filters (7d/15d/30d/60d/90d) in Insights have data
+  - Service pie chart shows Standard Session (~55%) / Intro Call (~20%) / Extended (~25%)
+
+====================================================================
+END OF KNOWLEDGE TRANSFER
+====================================================================

@@ -1,0 +1,59 @@
+/* ─── Cinematic Wind Sweep Page Transition ───────────────────────────────────── */
+/* A premium viewport-wide transition that sweeps a shimmering diagonal gradient beam
+   across the entire screen from left to right on page transition. Hardware accelerated. */
+
+.wind-sweep-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50; /* Above all content except overlays/modals */
+  overflow: hidden;
+}
+
+.wind-sweep-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80vw;
+  background: linear-gradient(
+    115deg,
+    rgba(22, 101, 52, 0) 0%,
+    color-mix(in srgb, var(--color-primary, #166534) 15%, transparent) 30%,
+    color-mix(in srgb, var(--color-accent, #2f7d4f) 25%, transparent) 50%,
+    color-mix(in srgb, var(--color-primary, #166534) 15%, transparent) 70%,
+    rgba(22, 101, 52, 0) 100%
+  );
+  transform: translateX(-100vw) skewX(-15deg);
+  will-change: transform;
+}
+
+.wind-sweep-bar.active {
+  animation: windSweep 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Light mode variant for subtle blending on light backgrounds */
+html[data-theme="light"] .wind-sweep-bar {
+  background: linear-gradient(
+    115deg,
+    rgba(22, 101, 52, 0) 0%,
+    color-mix(in srgb, var(--color-primary, #166534) 8%, transparent) 30%,
+    color-mix(in srgb, var(--color-accent, #2f7d4f) 12%, transparent) 50%,
+    color-mix(in srgb, var(--color-primary, #166534) 8%, transparent) 70%,
+    rgba(22, 101, 52, 0) 100%
+  );
+}
+
+@keyframes windSweep {
+  0% {
+    transform: translateX(-100vw) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(180vw) skewX(-15deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wind-sweep-bar {
+    animation: none !important;
+  }
+}

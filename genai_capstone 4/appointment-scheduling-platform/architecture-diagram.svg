@@ -1,0 +1,335 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1100" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1923"/>
+      <stop offset="100%" style="stop-color:#1a2a3a"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a4f"/>
+      <stop offset="100%" style="stop-color:#162a3a"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d5a3a"/>
+      <stop offset="100%" style="stop-color:#1a3a25"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a4a6a"/>
+      <stop offset="100%" style="stop-color:#1a3050"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a2a5a"/>
+      <stop offset="100%" style="stop-color:#251a40"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a4a4a"/>
+      <stop offset="100%" style="stop-color:#0f3535"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="1100" fill="url(#bgGrad)"/>
+
+  <!-- ═══════════════════════ USER TIER ═══════════════════════ -->
+  <!-- User icon at top -->
+  <text x="700" y="35" text-anchor="middle" fill="#8ec8e8" font-size="14" font-weight="bold">👤 User</text>
+
+  <!-- Role boxes at top -->
+  <!-- Customer -->
+  <rect x="50" y="50" width="320" height="180" rx="8" fill="url(#boxGrad)" stroke="#3a6a8a" stroke-width="1.5"/>
+  <text x="210" y="72" text-anchor="middle" fill="#8ec8e8" font-size="13" font-weight="bold">👤 Customer</text>
+  <text x="210" y="92" text-anchor="middle" fill="#6ab0d4" font-size="11">Frontend Mesh</text>
+  <rect x="65" y="100" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="130" y="120" text-anchor="middle" fill="#b8d8e8" font-size="9">Provider Discovery</text>
+  <rect x="205" y="100" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="270" y="120" text-anchor="middle" fill="#b8d8e8" font-size="9">Book Appointment</text>
+  <rect x="65" y="140" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="130" y="160" text-anchor="middle" fill="#b8d8e8" font-size="9">Payment Processing</text>
+  <rect x="205" y="140" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="270" y="160" text-anchor="middle" fill="#b8d8e8" font-size="9">Waitlist & Rebook</text>
+  <rect x="65" y="180" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="130" y="200" text-anchor="middle" fill="#b8d8e8" font-size="9">AI Chatbot (Schedully)</text>
+  <rect x="205" y="180" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="270" y="200" text-anchor="middle" fill="#b8d8e8" font-size="9">Reviews & Ratings</text>
+
+  <!-- Admin -->
+  <rect x="400" y="50" width="320" height="180" rx="8" fill="url(#boxGrad)" stroke="#3a6a8a" stroke-width="1.5"/>
+  <text x="560" y="72" text-anchor="middle" fill="#8ec8e8" font-size="13" font-weight="bold">👮 Admin</text>
+  <text x="560" y="92" text-anchor="middle" fill="#6ab0d4" font-size="11">Ops Admin Mesh</text>
+  <rect x="415" y="100" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="480" y="120" text-anchor="middle" fill="#b8d8e8" font-size="9">Analytics (Recharts)</text>
+  <rect x="555" y="100" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="620" y="120" text-anchor="middle" fill="#b8d8e8" font-size="9">Provider Approval</text>
+  <rect x="415" y="140" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="480" y="160" text-anchor="middle" fill="#b8d8e8" font-size="9">AI Doc Verification</text>
+  <rect x="555" y="140" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="620" y="160" text-anchor="middle" fill="#b8d8e8" font-size="9">Organization Mgmt</text>
+  <rect x="415" y="180" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="480" y="200" text-anchor="middle" fill="#b8d8e8" font-size="9">Dispute Resolution</text>
+  <rect x="555" y="180" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="620" y="200" text-anchor="middle" fill="#b8d8e8" font-size="9">Report Generation</text>
+
+  <!-- Provider -->
+  <rect x="750" y="50" width="320" height="180" rx="8" fill="url(#boxGrad)" stroke="#3a6a8a" stroke-width="1.5"/>
+  <text x="910" y="72" text-anchor="middle" fill="#8ec8e8" font-size="13" font-weight="bold">🏥 Service Provider</text>
+  <text x="910" y="92" text-anchor="middle" fill="#6ab0d4" font-size="11">Provider Mesh</text>
+  <rect x="765" y="100" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="830" y="120" text-anchor="middle" fill="#b8d8e8" font-size="9">Availability Mgmt</text>
+  <rect x="905" y="100" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="970" y="120" text-anchor="middle" fill="#b8d8e8" font-size="9">Appointment Mgmt</text>
+  <rect x="765" y="140" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="830" y="160" text-anchor="middle" fill="#b8d8e8" font-size="9">Google Calendar Sync</text>
+  <rect x="905" y="140" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="970" y="160" text-anchor="middle" fill="#b8d8e8" font-size="9">Services & Packages</text>
+  <rect x="765" y="180" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="830" y="200" text-anchor="middle" fill="#b8d8e8" font-size="9">Revenue Dashboard</text>
+  <rect x="905" y="180" width="130" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="970" y="200" text-anchor="middle" fill="#b8d8e8" font-size="9">Onboarding</text>
+
+  <!-- Organization (small box) -->
+  <rect x="1100" y="50" width="250" height="180" rx="8" fill="url(#boxGrad)" stroke="#3a6a8a" stroke-width="1.5"/>
+  <text x="1225" y="72" text-anchor="middle" fill="#8ec8e8" font-size="13" font-weight="bold">🏢 Organization</text>
+  <text x="1225" y="92" text-anchor="middle" fill="#6ab0d4" font-size="11">Org Mesh</text>
+  <rect x="1115" y="100" width="110" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="1170" y="120" text-anchor="middle" fill="#b8d8e8" font-size="9">Org Dashboard</text>
+  <rect x="1235" y="100" width="100" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="1285" y="120" text-anchor="middle" fill="#b8d8e8" font-size="9">Team Mgmt</text>
+  <rect x="1115" y="140" width="110" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="1170" y="160" text-anchor="middle" fill="#b8d8e8" font-size="9">Join Requests</text>
+  <rect x="1235" y="140" width="100" height="30" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="1285" y="160" text-anchor="middle" fill="#b8d8e8" font-size="9">Revenue</text>
+
+  <!-- ═══════════════════════ API CALLS BAR ═══════════════════════ -->
+  <line x1="50" y1="248" x2="1350" y2="248" stroke="#4a8aaa" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="100" y="262" fill="#5a9aba" font-size="9">POST /auth/*</text>
+  <text x="250" y="262" fill="#5a9aba" font-size="9">GET /api/customer/*</text>
+  <text x="430" y="262" fill="#5a9aba" font-size="9">POST /api/payments/*</text>
+  <text x="620" y="262" fill="#5a9aba" font-size="9">GET /api/admin/*</text>
+  <text x="790" y="262" fill="#5a9aba" font-size="9">PATCH /api/provider/*</text>
+  <text x="980" y="262" fill="#5a9aba" font-size="9">POST /api/schedully/*</text>
+  <text x="1170" y="262" fill="#5a9aba" font-size="9">GET /api/organizations/*</text>
+
+  <!-- Axios label -->
+  <rect x="620" y="270" width="160" height="22" rx="4" fill="#1a3050" stroke="#4a8aaa" stroke-width="1"/>
+  <text x="700" y="285" text-anchor="middle" fill="#8ec8e8" font-size="11" font-weight="bold">Axios / HTTP Client</text>
+
+  <!-- ═══════════════════════ MIDDLE TIER ═══════════════════════ -->
+
+  <!-- Security Layer -->
+  <rect x="50" y="310" width="200" height="200" rx="8" fill="url(#purpleGrad)" stroke="#6a4a9a" stroke-width="1.5"/>
+  <text x="150" y="332" text-anchor="middle" fill="#c8a8e8" font-size="12" font-weight="bold">Security Layer</text>
+  <rect x="70" y="345" width="160" height="35" rx="4" fill="#2a1a40" stroke="#7a5aaa" stroke-width="0.8"/>
+  <text x="150" y="367" text-anchor="middle" fill="#d8b8f8" font-size="10">JWT Authentication</text>
+  <text x="150" y="395" text-anchor="middle" fill="#9a7aba" font-size="9">↕ Token Check</text>
+  <rect x="70" y="405" width="160" height="35" rx="4" fill="#2a1a40" stroke="#7a5aaa" stroke-width="0.8"/>
+  <text x="150" y="427" text-anchor="middle" fill="#d8b8f8" font-size="10">RBAC (require_role)</text>
+  <text x="150" y="455" text-anchor="middle" fill="#9a7aba" font-size="9">↕ Permission Guard</text>
+  <rect x="70" y="465" width="160" height="35" rx="4" fill="#2a1a40" stroke="#7a5aaa" stroke-width="0.8"/>
+  <text x="150" y="487" text-anchor="middle" fill="#d8b8f8" font-size="10">SlowAPI Rate Limiting</text>
+
+  <!-- (A) Main API Tier - FastAPI -->
+  <rect x="270" y="310" width="380" height="200" rx="8" fill="url(#blueGrad)" stroke="#4a7aaa" stroke-width="1.5"/>
+  <text x="460" y="332" text-anchor="middle" fill="#a8d8f8" font-size="12" font-weight="bold">(A) Main API Tier (Python/FastAPI)</text>
+  <rect x="290" y="345" width="150" height="28" rx="4" fill="#1a3050" stroke="#4a8aaa" stroke-width="0.8"/>
+  <text x="365" y="364" text-anchor="middle" fill="#c8e8f8" font-size="10">Pydantic Validation</text>
+  <text x="460" y="388" text-anchor="middle" fill="#7aaaca" font-size="9">↓</text>
+  <rect x="290" y="395" width="150" height="28" rx="4" fill="#1a3050" stroke="#4a8aaa" stroke-width="0.8"/>
+  <text x="365" y="414" text-anchor="middle" fill="#c8e8f8" font-size="10">FastAPI Routers (13)</text>
+  <text x="460" y="438" text-anchor="middle" fill="#7aaaca" font-size="9">↓</text>
+  <rect x="290" y="445" width="150" height="28" rx="4" fill="#1a3050" stroke="#4a8aaa" stroke-width="0.8"/>
+  <text x="365" y="464" text-anchor="middle" fill="#c8e8f8" font-size="10">Services Layer (17)</text>
+  <!-- ORM boxes -->
+  <rect x="470" y="345" width="160" height="28" rx="4" fill="url(#greenGrad)" stroke="#4a9a5a" stroke-width="0.8"/>
+  <text x="550" y="364" text-anchor="middle" fill="#a8e8b8" font-size="10">SQLAlchemy ORM</text>
+  <text x="550" y="380" text-anchor="middle" fill="#6aaa7a" font-size="8">(25+ Models)</text>
+  <rect x="470" y="395" width="160" height="28" rx="4" fill="url(#greenGrad)" stroke="#4a9a5a" stroke-width="0.8"/>
+  <text x="550" y="414" text-anchor="middle" fill="#a8e8b8" font-size="10">PyMongo (Audit Logs)</text>
+  <rect x="470" y="445" width="160" height="28" rx="4" fill="url(#greenGrad)" stroke="#4a9a5a" stroke-width="0.8"/>
+  <text x="550" y="464" text-anchor="middle" fill="#a8e8b8" font-size="10">Redis (Caching)</text>
+  <!-- Port label -->
+  <text x="460" y="500" text-anchor="middle" fill="#5a9aba" font-size="9">Port 5000</text>
+
+  <!-- (B) Schedully RAG Chatbot -->
+  <rect x="670" y="310" width="340" height="200" rx="8" fill="url(#tealGrad)" stroke="#3a8a8a" stroke-width="1.5"/>
+  <text x="840" y="332" text-anchor="middle" fill="#8ae8e8" font-size="12" font-weight="bold">(B) Schedully RAG Chatbot</text>
+  <rect x="690" y="345" width="140" height="25" rx="4" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="760" y="362" text-anchor="middle" fill="#a8f8f8" font-size="9">Planner (Intent)</text>
+  <rect x="840" y="345" width="150" height="25" rx="4" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="915" y="362" text-anchor="middle" fill="#a8f8f8" font-size="9">Hybrid Retriever</text>
+  <rect x="690" y="380" width="140" height="25" rx="4" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="760" y="397" text-anchor="middle" fill="#a8f8f8" font-size="9">FAISS Vector Store</text>
+  <rect x="840" y="380" width="150" height="25" rx="4" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="915" y="397" text-anchor="middle" fill="#a8f8f8" font-size="9">BM25 Keyword Search</text>
+  <rect x="690" y="415" width="140" height="25" rx="4" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="760" y="432" text-anchor="middle" fill="#a8f8f8" font-size="9">Reranker (Fusion)</text>
+  <rect x="840" y="415" width="150" height="25" rx="4" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="915" y="432" text-anchor="middle" fill="#a8f8f8" font-size="9">Verifier</text>
+  <rect x="690" y="450" width="140" height="25" rx="4" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="760" y="467" text-anchor="middle" fill="#a8f8f8" font-size="9">Generator (LLM)</text>
+  <rect x="840" y="450" width="150" height="25" rx="4" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="915" y="467" text-anchor="middle" fill="#a8f8f8" font-size="9">Session Memory</text>
+  <rect x="690" y="485" width="300" height="20" rx="3" fill="#0f3535" stroke="#3a9a9a" stroke-width="0.8"/>
+  <text x="840" y="499" text-anchor="middle" fill="#6adada" font-size="8">Live API Tool Calls + Document Ingestion Pipeline</text>
+
+  <!-- (C) Report Service -->
+  <rect x="1030" y="310" width="220" height="200" rx="8" fill="url(#boxGrad)" stroke="#3a6a8a" stroke-width="1.5"/>
+  <text x="1140" y="332" text-anchor="middle" fill="#8ec8e8" font-size="12" font-weight="bold">(C) Report Service</text>
+  <text x="1140" y="350" text-anchor="middle" fill="#6ab0d4" font-size="10">(Node.js/Express)</text>
+  <rect x="1050" y="365" width="180" height="28" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="1140" y="384" text-anchor="middle" fill="#b8d8e8" font-size="10">Shared Secret Auth</text>
+  <rect x="1050" y="403" width="180" height="28" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="1140" y="422" text-anchor="middle" fill="#b8d8e8" font-size="10">Express Routers</text>
+  <rect x="1050" y="441" width="180" height="28" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="1140" y="460" text-anchor="middle" fill="#b8d8e8" font-size="10">xlsx (Excel Generation)</text>
+  <rect x="1050" y="479" width="180" height="28" rx="4" fill="#1a3a50" stroke="#3a7a9a" stroke-width="0.8"/>
+  <text x="1140" y="498" text-anchor="middle" fill="#b8d8e8" font-size="10">mysql2 (Direct Query)</text>
+  <text x="1140" y="500" text-anchor="middle" fill="#5a9aba" font-size="9"></text>
+  <!-- Port label -->
+  <text x="1270" y="332" fill="#5a9aba" font-size="9">Port 4000</text>
+
+  <!-- ═══════════════════════ INTEGRATION HUB ═══════════════════════ -->
+  <rect x="1270" y="540" width="110" height="280" rx="8" fill="url(#boxGrad)" stroke="#3a6a8a" stroke-width="1.5"/>
+  <text x="1325" y="560" text-anchor="middle" fill="#8ec8e8" font-size="11" font-weight="bold">Integration</text>
+  <text x="1325" y="575" text-anchor="middle" fill="#8ec8e8" font-size="11" font-weight="bold">Hub</text>
+
+  <!-- Groq AI -->
+  <rect x="1280" y="590" width="90" height="35" rx="4" fill="#2a4a2a" stroke="#4a9a4a" stroke-width="0.8"/>
+  <text x="1325" y="607" text-anchor="middle" fill="#a8e8a8" font-size="9" font-weight="bold">Groq AI</text>
+  <text x="1325" y="620" text-anchor="middle" fill="#7aba7a" font-size="8">Llama 3</text>
+
+  <!-- Razorpay -->
+  <rect x="1280" y="635" width="90" height="35" rx="4" fill="#3a3a1a" stroke="#9a9a3a" stroke-width="0.8"/>
+  <text x="1325" y="652" text-anchor="middle" fill="#e8e8a8" font-size="9" font-weight="bold">Razorpay</text>
+  <text x="1325" y="665" text-anchor="middle" fill="#baba7a" font-size="8">Gateway</text>
+
+  <!-- FastAPI Mail -->
+  <rect x="1280" y="680" width="90" height="35" rx="4" fill="#1a3a5a" stroke="#4a8aba" stroke-width="0.8"/>
+  <text x="1325" y="697" text-anchor="middle" fill="#a8d8f8" font-size="9" font-weight="bold">FastAPI</text>
+  <text x="1325" y="710" text-anchor="middle" fill="#7aaaca" font-size="8">Mail (SMTP)</text>
+
+  <!-- Google OAuth -->
+  <rect x="1280" y="725" width="90" height="35" rx="4" fill="#4a2a2a" stroke="#aa5a5a" stroke-width="0.8"/>
+  <text x="1325" y="742" text-anchor="middle" fill="#f8b8b8" font-size="9" font-weight="bold">Google</text>
+  <text x="1325" y="755" text-anchor="middle" fill="#ba7a7a" font-size="8">OAuth + Cal</text>
+
+  <!-- Sentence Transformers -->
+  <rect x="1280" y="770" width="90" height="35" rx="4" fill="#2a2a4a" stroke="#6a6aaa" stroke-width="0.8"/>
+  <text x="1325" y="787" text-anchor="middle" fill="#c8c8f8" font-size="9" font-weight="bold">Sentence</text>
+  <text x="1325" y="800" text-anchor="middle" fill="#9a9aba" font-size="8">Transformers</text>
+
+  <!-- ═══════════════════════ PERSISTENCE MESH ═══════════════════════ -->
+  <rect x="50" y="550" width="1200" height="250" rx="8" fill="none" stroke="#3a5a6a" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="650" y="575" text-anchor="middle" fill="#6a9aba" font-size="13" font-weight="bold">Persistence Mesh</text>
+
+  <!-- MySQL -->
+  <rect x="80" y="600" width="280" height="170" rx="6" fill="#1a2a1a" stroke="#3a6a3a" stroke-width="1"/>
+  <text x="220" y="622" text-anchor="middle" fill="#8aba8a" font-size="12" font-weight="bold">MySQL 8+</text>
+  <text x="220" y="640" text-anchor="middle" fill="#6a9a6a" font-size="9">(Primary Relational Store)</text>
+  <!-- Table icons -->
+  <rect x="100" y="655" width="110" height="20" rx="3" fill="#0f2a0f" stroke="#3a7a3a" stroke-width="0.5"/>
+  <text x="155" y="669" text-anchor="middle" fill="#a8d8a8" font-size="8">users</text>
+  <rect x="220" y="655" width="120" height="20" rx="3" fill="#0f2a0f" stroke="#3a7a3a" stroke-width="0.5"/>
+  <text x="280" y="669" text-anchor="middle" fill="#a8d8a8" font-size="8">service_providers</text>
+  <rect x="100" y="680" width="110" height="20" rx="3" fill="#0f2a0f" stroke="#3a7a3a" stroke-width="0.5"/>
+  <text x="155" y="694" text-anchor="middle" fill="#a8d8a8" font-size="8">appointments</text>
+  <rect x="220" y="680" width="120" height="20" rx="3" fill="#0f2a0f" stroke="#3a7a3a" stroke-width="0.5"/>
+  <text x="280" y="694" text-anchor="middle" fill="#a8d8a8" font-size="8">availability</text>
+  <rect x="100" y="705" width="110" height="20" rx="3" fill="#0f2a0f" stroke="#3a7a3a" stroke-width="0.5"/>
+  <text x="155" y="719" text-anchor="middle" fill="#a8d8a8" font-size="8">organizations</text>
+  <rect x="220" y="705" width="120" height="20" rx="3" fill="#0f2a0f" stroke="#3a7a3a" stroke-width="0.5"/>
+  <text x="280" y="719" text-anchor="middle" fill="#a8d8a8" font-size="8">payments/refunds</text>
+  <rect x="100" y="730" width="110" height="20" rx="3" fill="#0f2a0f" stroke="#3a7a3a" stroke-width="0.5"/>
+  <text x="155" y="744" text-anchor="middle" fill="#a8d8a8" font-size="8">notifications</text>
+  <rect x="220" y="730" width="120" height="20" rx="3" fill="#0f2a0f" stroke="#3a7a3a" stroke-width="0.5"/>
+  <text x="280" y="744" text-anchor="middle" fill="#a8d8a8" font-size="8">disputes/reviews</text>
+
+  <!-- MongoDB -->
+  <rect x="400" y="600" width="250" height="170" rx="6" fill="#1a1a2a" stroke="#3a3a6a" stroke-width="1"/>
+  <text x="525" y="622" text-anchor="middle" fill="#8a8aba" font-size="12" font-weight="bold">MongoDB</text>
+  <text x="525" y="640" text-anchor="middle" fill="#6a6a9a" font-size="9">(Document Store)</text>
+  <rect x="420" y="655" width="210" height="20" rx="3" fill="#0f0f2a" stroke="#3a3a7a" stroke-width="0.5"/>
+  <text x="525" y="669" text-anchor="middle" fill="#a8a8d8" font-size="8">Audit Logs</text>
+  <rect x="420" y="680" width="210" height="20" rx="3" fill="#0f0f2a" stroke="#3a3a7a" stroke-width="0.5"/>
+  <text x="525" y="694" text-anchor="middle" fill="#a8a8d8" font-size="8">AI Insight Records</text>
+  <rect x="420" y="705" width="210" height="20" rx="3" fill="#0f0f2a" stroke="#3a3a7a" stroke-width="0.5"/>
+  <text x="525" y="719" text-anchor="middle" fill="#a8a8d8" font-size="8">Session Data</text>
+
+  <!-- Redis -->
+  <rect x="690" y="600" width="220" height="170" rx="6" fill="#2a1a1a" stroke="#6a3a3a" stroke-width="1"/>
+  <text x="800" y="622" text-anchor="middle" fill="#ba8a8a" font-size="12" font-weight="bold">Redis</text>
+  <text x="800" y="640" text-anchor="middle" fill="#9a6a6a" font-size="9">(Cache & Rate Limit Store)</text>
+  <rect x="710" y="655" width="180" height="20" rx="3" fill="#2a0f0f" stroke="#7a3a3a" stroke-width="0.5"/>
+  <text x="800" y="669" text-anchor="middle" fill="#d8a8a8" font-size="8">API Response Cache</text>
+  <rect x="710" y="680" width="180" height="20" rx="3" fill="#2a0f0f" stroke="#7a3a3a" stroke-width="0.5"/>
+  <text x="800" y="694" text-anchor="middle" fill="#d8a8a8" font-size="8">Rate Limit Counters</text>
+  <rect x="710" y="705" width="180" height="20" rx="3" fill="#2a0f0f" stroke="#7a3a3a" stroke-width="0.5"/>
+  <text x="800" y="719" text-anchor="middle" fill="#d8a8a8" font-size="8">Session Tokens</text>
+
+  <!-- FAISS -->
+  <rect x="950" y="600" width="250" height="170" rx="6" fill="#1a2a2a" stroke="#3a6a6a" stroke-width="1"/>
+  <text x="1075" y="622" text-anchor="middle" fill="#8ababa" font-size="12" font-weight="bold">FAISS Vector Store</text>
+  <text x="1075" y="640" text-anchor="middle" fill="#6a9a9a" font-size="9">(Embeddings / RAG)</text>
+  <rect x="970" y="655" width="210" height="20" rx="3" fill="#0f2a2a" stroke="#3a7a7a" stroke-width="0.5"/>
+  <text x="1075" y="669" text-anchor="middle" fill="#a8d8d8" font-size="8">Per-Tenant Vector Corpus</text>
+  <rect x="970" y="680" width="210" height="20" rx="3" fill="#0f2a2a" stroke="#3a7a7a" stroke-width="0.5"/>
+  <text x="1075" y="694" text-anchor="middle" fill="#a8d8d8" font-size="8">Document Chunks + Metadata</text>
+  <rect x="970" y="705" width="210" height="20" rx="3" fill="#0f2a2a" stroke="#3a7a7a" stroke-width="0.5"/>
+  <text x="1075" y="719" text-anchor="middle" fill="#a8d8d8" font-size="8">BM25 Inverted Index</text>
+  <rect x="970" y="730" width="210" height="20" rx="3" fill="#0f2a2a" stroke="#3a7a7a" stroke-width="0.5"/>
+  <text x="1075" y="744" text-anchor="middle" fill="#a8d8d8" font-size="8">Shared KB Tenant</text>
+
+  <!-- ═══════════════════════ CONNECTION ARROWS ═══════════════════════ -->
+  <!-- Frontend to API bar -->
+  <line x1="210" y1="230" x2="210" y2="248" stroke="#4a8aaa" stroke-width="1"/>
+  <line x1="560" y1="230" x2="560" y2="248" stroke="#4a8aaa" stroke-width="1"/>
+  <line x1="910" y1="230" x2="910" y2="248" stroke="#4a8aaa" stroke-width="1"/>
+  <line x1="1225" y1="230" x2="1225" y2="248" stroke="#4a8aaa" stroke-width="1"/>
+
+  <!-- API bar to backend tiers -->
+  <line x1="150" y1="292" x2="150" y2="310" stroke="#6a4a9a" stroke-width="1"/>
+  <line x1="460" y1="292" x2="460" y2="310" stroke="#4a7aaa" stroke-width="1"/>
+  <line x1="840" y1="292" x2="840" y2="310" stroke="#3a8a8a" stroke-width="1"/>
+  <line x1="1140" y1="292" x2="1140" y2="310" stroke="#3a6a8a" stroke-width="1"/>
+
+  <!-- Backend to Persistence -->
+  <line x1="365" y1="510" x2="220" y2="600" stroke="#3a6a3a" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="270" y="555" fill="#5a9a5a" font-size="8">SQLAlchemy Query</text>
+  <line x1="550" y1="510" x2="525" y2="600" stroke="#3a3a6a" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="545" y="555" fill="#6a6a9a" font-size="8">PyMongo</text>
+  <line x1="460" y1="510" x2="800" y2="600" stroke="#6a3a3a" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="680" y="555" fill="#9a5a5a" font-size="8">Redis Cache</text>
+
+  <!-- Chatbot to FAISS -->
+  <line x1="840" y1="510" x2="1075" y2="600" stroke="#3a6a6a" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="980" y="555" fill="#6a9a9a" font-size="8">Embeddings</text>
+
+  <!-- Report service to MySQL -->
+  <line x1="1140" y1="510" x2="300" y2="600" stroke="#3a6a3a" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="750" y="545" fill="#5a9a5a" font-size="8">mysql2 Direct Query</text>
+
+  <!-- Integration arrows -->
+  <line x1="1010" y1="395" x2="1270" y2="607" stroke="#4a9a4a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="650" y1="460" x2="1270" y2="652" stroke="#9a9a3a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="650" y1="420" x2="1270" y2="697" stroke="#4a8aba" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="1010" y1="360" x2="1270" y2="742" stroke="#aa5a5a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="1010" y1="432" x2="1270" y2="787" stroke="#6a6aaa" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- ═══════════════════════ BOTTOM LABELS ═══════════════════════ -->
+  <rect x="50" y="830" width="1300" height="55" rx="6" fill="#0f1923" stroke="#2a4a5a" stroke-width="1"/>
+  <text x="700" y="850" text-anchor="middle" fill="#6ab0d4" font-size="11" font-weight="bold">Technology Stack Summary</text>
+  <text x="150" y="872" text-anchor="middle" fill="#8aba8a" font-size="9">React 19 + Vite 8 + TailwindCSS 4</text>
+  <text x="380" y="872" text-anchor="middle" fill="#8a8aba" font-size="9">FastAPI + SQLAlchemy + Pydantic v2</text>
+  <text x="600" y="872" text-anchor="middle" fill="#8ababa" font-size="9">FAISS + sentence-transformers + Groq</text>
+  <text x="820" y="872" text-anchor="middle" fill="#ba8a8a" font-size="9">Express 5 + mysql2 + xlsx</text>
+  <text x="1020" y="872" text-anchor="middle" fill="#baba8a" font-size="9">MySQL + MongoDB + Redis</text>
+  <text x="1220" y="872" text-anchor="middle" fill="#ba8aba" font-size="9">Playwright E2E Tests</text>
+
+  <!-- Title watermark -->
+  <text x="700" y="915" text-anchor="middle" fill="#3a5a7a" font-size="14" font-weight="bold">Schedex (Sigslot) — Appointment Scheduling Platform Architecture</text>
+</svg>

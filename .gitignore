@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.venv/
+myenv/
+env/
+venv/
+
+# Environment variables
+.env
+*.env
+
+# OS files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Build output (frontend compiled)
+**/frontend/dist/
+
+# Uploads (user data)
+**/backend/uploads/
+
+# Playwright cache (not results)
+**/playwright/.cache/
+**/playwright/.auth/
+
+# IDE / tooling
+.vscode/
+.blackbox/
+graphify-out/

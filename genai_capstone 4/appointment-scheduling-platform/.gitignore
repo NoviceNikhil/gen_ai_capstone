@@ -1,0 +1,28 @@
+
+# Dependencies
+node_modules/
+.venv/
+
+# Environment variables
+.env
+*.env
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# OS files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Build output
+frontend/dist/
+
+# Uploads (user data)
+backend/uploads/
