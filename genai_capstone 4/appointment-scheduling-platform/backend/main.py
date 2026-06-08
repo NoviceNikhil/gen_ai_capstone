@@ -107,8 +107,17 @@ async def lifespan(app: FastAPI):
     print("  MySQL tables synced successfully")
     task = asyncio.create_task(expire_reschedule_requests_loop())
     # ── chatbot changes start ─────────────────────────────────────────────────
-    from schedully.backend.kb_loader import load_kb
-    load_kb()
+    # Load KB in background so uvicorn can bind the port immediately
+    async def _load_kb_background():
+        await asyncio.sleep(1)  # Let uvicorn bind first
+        try:
+            from schedully.backend.kb_loader import load_kb
+            load_kb()
+            print("  Schedully KB loaded successfully")
+        except Exception as e:
+            print(f"  Warning: KB loading failed (non-critical): {e}")
+
+    asyncio.create_task(_load_kb_background())
     # ── chatbot changes end ───────────────────────────────────────────────────
     yield
     # Shutdown: clean up resources if needed
